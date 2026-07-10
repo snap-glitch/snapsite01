@@ -43,8 +43,7 @@
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 34px}
   @media(max-width:600px){.wrap{padding:0 20px}}
 
-  .pw{font-style:italic;color:var(--pw);animation:pwpulse 1s ease-in-out infinite}
-  @keyframes pwpulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .pw{font-family:var(--mono);font-style:italic;color:var(--pw)}
 
   .bg-blobs{position:fixed;inset:-15%;z-index:0;pointer-events:none;filter:blur(100px);opacity:.5}
   .bb{position:absolute;border-radius:50%}
@@ -84,13 +83,18 @@
   .iconbtn{width:40px;height:40px;border-radius:100px;border:1px solid var(--line);background:var(--panel-solid);color:var(--text);cursor:pointer;font-family:var(--mono);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;transition:transform .25s,border-color .2s,color .2s;box-shadow:var(--shadow)}
   .iconbtn:hover{transform:scale(1.06);border-color:var(--primary)}
   .iconbtn.dim{color:var(--faint);border-style:dashed}
+  .iconbtn.blink{border-color:var(--primary-lt);color:var(--primary-lt);animation:fxblink 1.4s ease-out infinite}
+  @keyframes fxblink{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--primary-lt) 55%,transparent)}70%,100%{box-shadow:0 0 0 9px color-mix(in srgb,var(--primary-lt) 0%,transparent)}}
   .iconbtn svg{width:17px;height:17px}
-  header .logo .mark{color:#F2F1FA}
-  header .logo span{color:#F2F1FA}
+  header .logo .mark{color:#FFFFFF}
+  header .logo span{color:#FFFFFF}
   header.nav.on-light .logo .mark{color:#3D35C9}
-  header.nav.on-light .logo span{color:#16132E}
+  header.nav.on-light .logo span{color:#3D35C9}
   header.nav.on-light .nav-links a{color:#5B577E}
   header.nav.on-light .nav-links a:hover{color:#16132E}
+  header.nav.on-light.scrolled .bar{background:rgba(255,255,255,.74);border-color:rgba(17,24,39,.10)}
+  header.nav.on-light .iconbtn{background:#fff;color:#16132E;border-color:rgba(17,24,39,.14)}
+  header.nav.on-light .iconbtn:hover{border-color:#3D35C9}
   @media(max-width:1000px){.nav-links{display:none}}
 
   .mu,.ml{opacity:0}
@@ -160,6 +164,10 @@
   .claim .cdots{display:flex;gap:9px;justify-content:center;margin-top:34px}
   .claim .cdots span{width:8px;height:8px;border-radius:50%;background:var(--line);cursor:pointer;transition:all .3s}
   .claim .cdots span.on{background:var(--primary-lt);width:22px;border-radius:100px}
+  .claim-panel{max-width:820px;margin:0 auto;padding:52px 48px;border:1px solid var(--line);border-radius:28px;background:var(--panel);backdrop-filter:blur(12px)}
+  @media(max-width:600px){.claim-panel{padding:36px 24px}}
+  .claim-chips{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:30px}
+  .claim-chips span{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;color:var(--muted);border:1px solid var(--line);border-radius:100px;padding:8px 16px}
 
   .two-col{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
   @media(max-width:820px){.two-col{grid-template-columns:1fr;gap:36px}}
@@ -174,6 +182,7 @@
 
   .card{border:1px solid var(--line);border-radius:20px;background:var(--panel);backdrop-filter:blur(12px);transition:transform .4s cubic-bezier(.16,1,.3,1),border-color .4s,box-shadow .4s}
   .card:hover{transform:translateY(-6px);border-color:var(--glass-bd);box-shadow:var(--shadow)}
+  .card:hover,.vtab:hover,.vspot-main:hover,.off-item:hover,.crow:hover,.btn-solid:hover,.btn-line:hover,.vopen:hover,.modal-links a:hover{filter:brightness(1.12)}
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
   @media(max-width:820px){.steps{grid-template-columns:1fr}}
   .step{padding:32px 28px}
@@ -183,6 +192,18 @@
   .step p{color:var(--muted);font-size:14.5px;font-weight:300}
 
   .featc{margin-top:50px}
+  .off-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;margin-top:52px;align-items:stretch}
+  @media(max-width:820px){.off-wrap{grid-template-columns:1fr}}
+  .off-list{display:flex;flex-direction:column;gap:12px}
+  .off-item{display:flex;gap:13px;align-items:flex-start;padding:15px 17px;border:1px solid var(--line);border-radius:14px;background:var(--panel);color:var(--text);cursor:pointer;text-align:left;transition:border-color .3s,transform .3s}
+  .off-item:hover{transform:translateX(4px);border-color:var(--glass-bd)}
+  .off-item.on{border-color:var(--primary-lt);background:color-mix(in srgb,var(--primary) 8%,transparent)}
+  .off-item .oi{width:36px;height:36px;border-radius:10px;background:color-mix(in srgb,var(--primary) 12%,transparent);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .off-item .oi svg{width:19px;height:19px;stroke:var(--primary-lt);fill:none;stroke-width:1.7}
+  .off-item .oc{display:flex;flex-direction:column;gap:2px}
+  .off-item .ok{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:.1em}
+  .off-item .ot{font-size:14px;font-weight:600}
+  .off-item .op{font-size:12.5px;color:var(--muted);font-weight:300;line-height:1.45}
   .offc{padding:46px 44px}
   @media(max-width:600px){.offc{padding:34px 26px}}
   .feat{transition:opacity .45s cubic-bezier(.16,1,.3,1),transform .45s cubic-bezier(.16,1,.3,1)}
@@ -249,6 +270,78 @@
   .flip{position:relative;z-index:10;background:var(--bg);color:var(--text);transition:background .5s,color .5s}
   html[data-theme="dark"] .flip{--bg:#FFFFFF;--bg2:#F6F6FB;--text:#111827;--muted:#6B7280;--faint:#9CA3AF;--line:rgba(17,24,39,.09);--panel:rgba(255,255,255,.72);--panel-solid:#FFFFFF;--primary:#3D35C9;--primary-lt:#5B52E0;--accent:#3D35C9;--glass:rgba(255,255,255,.6);--glass-bd:rgba(17,24,39,.12);--chip-no-bg:rgba(214,40,80,.07);--chip-no-fg:#C43757;--chip-no-bd:rgba(214,40,80,.18);--shadow:0 20px 50px rgba(0,0,0,.10)}
   html[data-theme="light"] .flip{--bg:#08070F;--bg2:#0C0A18;--text:#F2F1FA;--muted:#9E99C4;--faint:#5E5A85;--line:rgba(255,255,255,.09);--panel:rgba(22,20,45,.55);--panel-solid:#141130;--primary:#6C63FF;--primary-lt:#8E7BFF;--accent:#8E7BFF;--glass:rgba(18,16,40,.5);--glass-bd:rgba(255,255,255,.12);--chip-no-bg:rgba(255,90,120,.10);--chip-no-fg:#FF7B94;--chip-no-bd:rgba(255,90,120,.25);--shadow:0 20px 50px rgba(0,0,0,.45)}
+  /* verticals spotlight */
+  .vspot{margin-top:52px}
+  .vspot-main{display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center;padding:44px 42px;border:1px solid var(--line);border-radius:24px;background:var(--panel);backdrop-filter:blur(12px);cursor:pointer;transition:opacity .45s cubic-bezier(.16,1,.3,1),transform .45s,border-color .3s}
+  .vspot-main:hover{border-color:var(--glass-bd);transform:translateY(-4px)}
+  .vspot-ic{width:96px;height:96px;border-radius:22px;background:color-mix(in srgb,var(--primary) 15%,transparent);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .vspot-ic svg{width:46px;height:46px;stroke:var(--primary-lt);fill:none;stroke-width:1.6}
+  .vspot-main .vtag{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;display:block}
+  .vspot-main h3{font-size:clamp(22px,2.6vw,30px);margin-bottom:10px}
+  .vspot-main p{color:var(--muted);font-weight:300;max-width:640px;margin-bottom:14px;font-size:15px}
+  .vspot-urg{font-family:var(--mono);font-size:11.5px;color:var(--primary-lt);display:inline-flex;align-items:center;gap:8px;border:1px solid color-mix(in srgb,var(--primary) 28%,transparent);border-radius:100px;padding:6px 13px;margin-bottom:14px}
+  .vspot-more{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:13px;color:var(--primary-lt)}
+  .vspot-more svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2}
+  .vtabs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+  .vtab{padding:15px 16px;border:1px solid var(--line);border-radius:14px;background:var(--panel);color:var(--text);cursor:pointer;text-align:left;transition:border-color .3s,transform .3s;display:flex;align-items:center;gap:11px}
+  .vtab .tt{color:var(--text)}
+  .vtab:hover{transform:translateY(-3px);border-color:var(--glass-bd)}
+  .vtab.on{border-color:var(--primary-lt);background:color-mix(in srgb,var(--primary) 10%,transparent)}
+  .vtab .ti{width:34px;height:34px;border-radius:9px;background:color-mix(in srgb,var(--primary) 14%,transparent);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .vtab .ti svg{width:18px;height:18px;stroke:var(--primary-lt);fill:none;stroke-width:1.7}
+  .vtab .tt{font-size:12px;font-weight:600;line-height:1.2}
+  .vopen{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:14px;padding:18px 24px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:14px;transition:border-color .3s,color .3s}
+  .vopen:hover{border-color:var(--primary-lt);color:var(--text)}
+  .vopen .arrow{color:var(--primary-lt);font-weight:600}
+  @media(max-width:820px){.vspot-main{grid-template-columns:1fr;padding:30px 24px}.vtabs{grid-template-columns:1fr 1fr}}
+  /* models */
+  .model-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
+  @media(max-width:820px){.model-grid{grid-template-columns:1fr}}
+  .modelc{padding:34px 30px}
+  .modelc .ic{width:52px;height:52px;border-radius:14px;background:color-mix(in srgb,var(--primary) 14%,transparent);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+  .modelc .ic svg{width:26px;height:26px;stroke:var(--primary-lt);fill:none;stroke-width:1.7}
+  .modelc .mtag{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+  .modelc p{color:var(--muted);font-weight:300;font-size:14.5px;margin-bottom:18px}
+  .modelc .mprice{font-family:var(--mono);font-size:12px;color:var(--primary-lt);border-top:1px solid var(--line);padding-top:14px}
+  .model-cta{margin-top:38px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px}
+  .model-cta>span{font-size:clamp(17px,2vw,22px);font-weight:500}
+  .model-cta .actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+  /* modal */
+  .modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:24px}
+  .modal.open{display:flex}
+  .modal-bg{position:absolute;inset:0;background:rgba(6,5,15,.62);backdrop-filter:blur(6px);animation:mfade .3s ease}
+  .modal-box{position:relative;z-index:2;width:min(680px,94vw);max-height:86vh;overflow:auto;background:var(--panel-solid);border:1px solid var(--glass-bd);border-radius:24px;padding:40px 40px 36px;box-shadow:var(--shadow);animation:mrise .35s cubic-bezier(.16,1,.3,1)}
+  @media(max-width:600px){.modal-box{padding:28px 22px}}
+  @keyframes mfade{from{opacity:0}}
+  @keyframes mrise{from{opacity:0;transform:translateY(20px) scale(.98)}}
+  .modal-x{position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:20px;cursor:pointer;line-height:1;transition:all .2s}
+  .modal-x:hover{color:var(--text);border-color:var(--primary)}
+  .modal-box .mic{width:60px;height:60px;border-radius:16px;background:color-mix(in srgb,var(--primary) 15%,transparent);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+  .modal-box .mic svg{width:30px;height:30px;stroke:var(--primary-lt);fill:none;stroke-width:1.6}
+  .modal-box .vtag{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:8px}
+  .modal-box h3{font-size:26px;margin-bottom:14px}
+  .modal-box p{color:var(--muted);font-weight:300;margin-bottom:18px;line-height:1.7}
+  .modal-refs{font-family:var(--mono);font-size:10.5px;color:var(--faint);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+  .modal-links{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+  .modal-links a{display:inline-flex;align-items:center;gap:10px;font-size:14px;color:var(--primary-lt);border:1px solid var(--line);border-radius:12px;padding:12px 14px;transition:border-color .2s,transform .2s}
+  .modal-links a:hover{border-color:var(--primary-lt);transform:translateX(3px)}
+  .modal-links a svg{width:15px;height:15px;flex:0 0 auto}
+  /* back to top */
+  #toTop{position:fixed;right:26px;bottom:26px;z-index:45;width:52px;height:52px;border-radius:50%;border:1px solid var(--glass-bd);background:var(--panel-solid);color:var(--primary-lt);cursor:pointer;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .35s,transform .35s,border-color .2s}
+  #toTop.show{opacity:1;transform:none;pointer-events:auto}
+  #toTop:hover{transform:translateY(-3px);border-color:var(--primary)}
+  #toTop svg{width:26px;height:26px;overflow:visible}
+  @media(max-width:600px){#toTop{right:16px;bottom:16px;width:46px;height:46px}}
+  /* mobile */
+  @media(max-width:760px){
+    .sec{min-height:auto;padding:74px 0}
+    .claim{min-height:auto;padding:74px 0}
+    .hero{padding:120px 0 90px}
+    #d3{display:none}
+    .two-col{gap:28px}
+    h2{font-size:clamp(26px,7vw,34px)}
+    .hero h1{font-size:clamp(28px,8vw,40px)}
+  }
   @media(prefers-reduced-motion:reduce){.reveal,.reveal-h{opacity:1;transform:none;transition:none;animation:none}.mu,.ml,.pw{animation:none;opacity:1}.bb{animation:none}html{scroll-snap-type:none}}
 </style>
 </head>
@@ -256,6 +349,7 @@
 <div class="bg-blobs"><span class="bb bb1"></span><span class="bb bb2"></span><span class="bb bb3"></span></div>
 <canvas id="grid"></canvas>
 <div id="flash"></div>
+<button id="toTop" aria-label="Torna su"><svg viewBox="22.3 -4.3 214.9 215.3" aria-hidden="true"><g><path transform="matrix(.878817,-.477159,.477159,.878817,21.486626,15.316727)" d="M5.312893 75.921009C3.903826 75.921009 2.552472 76.48075 1.556111 77.47711 .559751 78.47347 0 79.82483 0 81.2339V121.0806C0 122.48967 .559751 123.84102 1.556111 124.83738 2.552472 125.83374 3.903826 126.39349 5.312893 126.39349H166.61603C168.0251 126.39349 169.37647 125.83374 170.37282 124.83738 171.36919 123.84102 171.92893 122.48967 171.92893 121.0806V81.2339C171.92893 79.82483 171.36919 78.47347 170.37282 77.47711 169.37647 76.48075 168.0251 75.921009 166.61603 75.921009H5.312893Z" fill="currentColor"/><path transform="matrix(.878817,-.477159,.477159,.878817,-9.608101,95.676898)" d="M5.312893 75.921009C3.903826 75.921009 2.552471 76.48076 1.55611 77.47712 .559749 78.47348 -0 79.82483 0 81.2339V121.0806C0 122.48967 .559749 123.84102 1.55611 124.83738 2.552471 125.83374 3.903826 126.39349 5.312893 126.39349H166.61605C168.02512 126.39349 169.37647 125.83374 170.37282 124.83738 171.36919 123.84102 171.92893 122.48967 171.92893 121.0806V81.2339C171.92893 79.82483 171.36919 78.47348 170.37282 77.47712 169.37647 76.48076 168.02512 75.921009 166.61605 75.921009H5.312893Z" fill="currentColor"/></g></svg></button>
 
 <header class="nav" id="nav">
   <div class="bar">
@@ -270,11 +364,12 @@
       <a href="#verticali" data-i18n="nav.verticals">Verticali</a>
       <a href="#otpr" data-i18n="nav.otpr">OTPr</a>
       <a href="#offline" data-i18n="nav.offline">Offline</a>
+      <a href="#modelli" data-i18n="nav.prezzi">Prezzi</a>
       <a href="#team" data-i18n="nav.team">Team</a>
       <a href="#contatti" data-i18n="nav.contact">Contatti</a>
     </nav>
     <div class="nav-right">
-      <button class="iconbtn" id="d3" title="Animazione 3D">3D</button>
+      <button class="iconbtn" id="d3" title="Animazione (FX)">FX</button>
       <button class="iconbtn" id="lang" title="Language">IT</button>
       <button class="iconbtn" id="theme" title="Tema" aria-label="Tema"><svg id="theme-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></svg></button>
     </div>
@@ -364,6 +459,43 @@
   </div>
 </section>
 
+<section class="sec" id="modelli">
+  <div class="wrap">
+    <div class="reveal" style="max-width:680px">
+      <span class="eyebrow" data-i18n="mod.eyebrow">Come lavoriamo</span>
+      <h2 data-i18n="mod.h2">Una piattaforma SaaS B2B, nel modello che ti serve.</h2>
+      <p class="lead" data-i18n="mod.lead">Snaproof si integra come servizio, come tecnologia in white-label o installata on-premises: scegli il livello di controllo e integrazione adatto alla tua organizzazione.</p>
+    </div>
+    <div class="model-grid">
+      <div class="card modelc reveal d1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M4 15a4 4 0 0 1 .6-8A6 6 0 0 1 16 6.5 3.5 3.5 0 0 1 19 15H4z"/></svg></div>
+        <div class="mtag" data-i18n="mod.saasT">SaaS</div><h3 data-i18n="mod.saasH">Servizio gestito</h3>
+        <p data-i18n="mod.saasP">La piattaforma in cloud, con piani in abbonamento. Attivi le API e certifichi i tuoi processi senza infrastruttura da gestire. Per PMI e sviluppatori.</p>
+        <div class="mprice" data-i18n="mod.price">Prezzo su misura</div>
+      </div>
+      <div class="card modelc reveal d2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h10"/><rect x="3" y="4" width="18" height="16" rx="2"/></svg></div>
+        <div class="mtag" data-i18n="mod.wlT">White Label · OEM</div><h3 data-i18n="mod.wlH">La tua tecnologia, il nostro motore</h3>
+        <p data-i18n="mod.wlP">API e SDK con licenza per integrare la certificazione Snaproof dentro il tuo prodotto, con il tuo brand. Per system integrator e OEM.</p>
+        <div class="mprice" data-i18n="mod.price">Prezzo su misura</div>
+      </div>
+      <div class="card modelc reveal d3">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg></div>
+        <div class="mtag" data-i18n="mod.opT">On-Premises</div><h3 data-i18n="mod.opH">Installata in casa tua</h3>
+        <p data-i18n="mod.opP">Deployment on-premises con supporto ricorrente, per chi richiede il massimo controllo e la sovranità del dato. Per grandi imprese.</p>
+        <div class="mprice" data-i18n="mod.price">Prezzo su misura</div>
+      </div>
+    </div>
+    <div class="model-cta reveal d2">
+      <span data-i18n="mod.cta">Prezzo su misura per il tuo caso d'uso.</span>
+      <div class="actions">
+        <a href="https://calendly.com/edoardo-parini-snaproof/investor-meeting" target="_blank" rel="noopener" class="btn btn-solid"><span data-i18n="cta.call">Prenota una call</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        <a href="mailto:edoardo.parini@snaproof.net" class="btn btn-line"><span data-i18n="cta.email">Scrivici una email</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="sec flip" id="offline">
   <div class="wrap">
     <div class="reveal" style="max-width:680px">
@@ -371,7 +503,10 @@
       <h2 data-i18n="offline.h2">Offline non è un ripiego. È il punto.</h2>
       <p class="lead" data-i18n="offline.lead">Snaproof verifica autenticità e provenienza anche dove la connessione non arriva: sul posto, sul dispositivo, in un istante.</p>
     </div>
-    <div class="featc reveal d1"><div class="card offc"><div class="feat" id="offFeat"></div><div class="feat-dots" id="offDots"></div></div></div>
+    <div class="off-wrap reveal d1">
+      <div class="card offc"><div class="feat" id="offFeat"></div><div class="feat-dots" id="offDots"></div></div>
+      <div class="off-list" id="offList"></div>
+    </div>
   </div>
 </section>
 
@@ -382,35 +517,10 @@
       <h2 data-i18n-html="verts.h2">Una infrastruttura, <span class="grad">quattro mercati</span> che la cercano.</h2>
       <p class="lead" data-i18n="verts.lead">La stessa tecnologia risolve problemi diversi, spinti da scadenze normative concrete. Non emettiamo token né certificati: abilitiamo chi lo fa.</p>
     </div>
-    <div class="vgrid">
-      <article class="card vcard reveal d1">
-        <div class="vhead"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg></div><div class="vtag" data-i18n="v1.tag">Supply chain · DPP</div></div>
-        <div class="vurgency" data-i18n="v1.urg">● ESPR tessile — atto delegato ~Q2 2027</div>
-        <h3 data-i18n="v1.h">Digital Product Passport per il Made in Italy</h3>
-        <p data-i18n="v1.p">Diamo a PMI e fornitori delle filiere del lusso un modo economico e a norma per certificare origine e autenticità dei prodotti.</p>
-        <a class="vlink" href="#contatti"><span data-i18n="v1.l">Parla del tuo caso d'uso</span> <span class="arrow">→</span></a>
-      </article>
-      <article class="card vcard reveal d2">
-        <div class="vhead"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/><path d="M7 15h4"/></svg></div><div class="vtag" data-i18n="v2.tag">Pagamenti programmabili</div></div>
-        <div class="vurgency" data-i18n="v2.urg">● Euro digitale · fase di preparazione BCE</div>
-        <h3 data-i18n="v2.h">Condizionalità e verifica per l'euro digitale offline</h3>
-        <p data-i18n="v2.p">Un livello di verifica e condizioni sopra i binari di regolamento, progettato per operare offline e in struttura closed-loop.</p>
-        <a class="vlink" href="#contatti"><span data-i18n="v2.l">Approfondisci</span> <span class="arrow">→</span></a>
-      </article>
-      <article class="card vcard reveal d3">
-        <div class="vhead"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18"/><circle cx="12" cy="12" r="3"/></svg></div><div class="vtag" data-i18n="v3.tag">AI Act · Articolo 50</div></div>
-        <div class="vurgency" data-i18n="v3.urg">● Obblighi di trasparenza — deadline agosto 2026</div>
-        <h3 data-i18n="v3.h">Marcatura dei contenuti generati dall'IA</h3>
-        <p data-i18n="v3.p">Marcatura crittografica dei contenuti prodotti dall'IA per rispondere agli obblighi di trasparenza dell'AI Act.</p>
-        <a class="vlink" href="#contatti"><span data-i18n="v3.l">Richiedi dettagli</span> <span class="arrow">→</span></a>
-      </article>
-      <article class="card vcard reveal d4">
-        <div class="vhead"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M4 21h16M6 21V9l6-4 6 4v12M10 21v-6h4v6"/></svg></div><div class="vtag" data-i18n="v4.tag">Istituzioni & standard</div></div>
-        <div class="vurgency" data-i18n="v4.urg">● Enabler d'infrastruttura, non emittente</div>
-        <h3 data-i18n="v4.h">Un layer neutrale per enti e consorzi</h3>
-        <p data-i18n="v4.p">Ci posizioniamo come abilitatore tecnologico per istituzioni ed enti di standard, che restano titolari dell'emissione e delle regole.</p>
-        <a class="vlink" href="#contatti"><span data-i18n="v4.l">Collaboriamo</span> <span class="arrow">→</span></a>
-      </article>
+    <div class="vspot reveal d1">
+      <article class="vspot-main" id="vMain"></article>
+      <div class="vtabs" id="vTabs"></div>
+      <a class="vopen reveal d2" href="#contatti"><span data-i18n="verts.open">Il tuo settore non è in elenco? Raccontacelo: valutiamo insieme un nuovo verticale.</span> <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
@@ -418,9 +528,17 @@
 <section class="claim" id="claim">
   <div class="wrap">
     <span class="eyebrow" style="justify-content:center" data-i18n="claim.eyebrow">In pratica</span>
-    <div class="ct" id="claimTitle"></div>
-    <p class="cs" id="claimSub"></p>
-    <div class="cdots" id="claimDots"></div>
+    <div class="claim-panel">
+      <div class="ct" id="claimTitle"></div>
+      <p class="cs" id="claimSub"></p>
+      <div class="cdots" id="claimDots"></div>
+    </div>
+    <div class="claim-chips reveal d1">
+      <span data-i18n="claim.c1">Compliance-grade</span>
+      <span data-i18n="claim.c2">Offline</span>
+      <span data-i18n="claim.c3">Al costo di un database</span>
+      <span data-i18n="claim.c4">Senza blockchain</span>
+    </div>
   </div>
 </section>
 
@@ -485,6 +603,7 @@
         <li><a href="#verticali" data-i18n="nav.verticals">Verticali</a></li>
         <li><a href="#otpr" data-i18n="nav.otpr">OTPr</a></li>
         <li><a href="#offline" data-i18n="nav.offline">Offline</a></li>
+        <li><a href="#modelli" data-i18n="nav.prezzi">Prezzi</a></li>
         <li><a href="#team" data-i18n="nav.team">Team</a></li>
       </ul></div>
       <div><h5 data-i18n="foot.company">Azienda</h5><ul>
@@ -498,13 +617,21 @@
 </footer>
 </div>
 
+<div class="modal" id="vModal" aria-hidden="true">
+  <div class="modal-bg" data-close></div>
+  <div class="modal-box" role="dialog" aria-modal="true">
+    <button class="modal-x" data-close aria-label="Chiudi">×</button>
+    <div id="vModalBody"></div>
+  </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 var I18N={en:{
  "nav.otpr":"OTPr","nav.offline":"Offline","nav.verticals":"Verticals","nav.team":"Team","nav.contact":"Contact",
  "hero.over":"Digital trust infrastructure","hero.cta":"Request a demo","hero.play":"See the technology",
  "stat.1":"Proprietary technology","stat.2n":"Offline","stat.2":"Verify without a network","stat.3n":"0 tokens","stat.3":"Infrastructure only",
- "claim.eyebrow":"In practice",
+ "claim.eyebrow":"In practice","claim.c1":"Compliance-grade","claim.c2":"Offline","claim.c3":"At the cost of a database","claim.c4":"Without blockchain",
  "prob.eyebrow":"The problem","prob.h2":"Proving something is true costs too much, or does not work where you need it.",
  "prob.lead":"Companies must prove origin, authenticity and compliance to regulators, partners and customers. Blockchain is expensive and complex; a database is cheap but forgeable. Snaproof combines both worlds - and it works offline too.",
  "prob.req":"Requirement","prob.r1":"Cost per verification","prob.r1a":"High","prob.r1b":"Database-level","prob.r2":"Works offline","prob.no":"No","prob.yes":"Yes","prob.r3":"Compliance-ready","prob.r3a":"Needs adapting","prob.r3b":"Native","prob.r4":"Operational complexity","prob.r4a":"High","prob.r4b":"Low",
@@ -514,7 +641,7 @@ var I18N={en:{
  "tech.k3":"03 - VERIFY","tech.s3h":"Open and offline","tech.s3p":"Anyone can independently verify the authenticity and provenance of an object or content, even with no connection.",
  "offline.eyebrow":"No network","offline.h2":"Offline is not a fallback. It is the point.","offline.lead":"Snaproof verifies authenticity and provenance even where the connection does not reach: on site, on the device, in an instant.",
  "verts.eyebrow":"Where it matters today","verts.h2":'One infrastructure, <span class="grad">four markets</span> looking for it.',
- "verts.lead":"The same technology solves different problems, driven by concrete regulatory deadlines. We do not issue tokens or certificates: we enable those who do.",
+ "verts.lead":"The same technology solves different problems, driven by concrete regulatory deadlines. We do not issue tokens or certificates: we enable those who do.","verts.open":"Your sector is not listed? Tell us: let us explore a new vertical together.",
  "v1.tag":"Supply chain · DPP","v1.urg":"● ESPR textiles - delegated act ~Q2 2027","v1.h":"Digital Product Passport for Made in Italy","v1.p":"We give SMEs and suppliers in luxury supply chains a cheap, compliant way to certify product origin and authenticity.","v1.l":"Discuss your use case",
  "v2.tag":"Programmable payments","v2.urg":"● Digital euro · ECB preparation phase","v2.h":"Conditionality and verification for the offline digital euro","v2.p":"A verification and conditions layer above settlement rails, designed to operate offline and in a closed-loop structure.","v2.l":"Learn more",
  "v3.tag":"AI Act · Article 50","v3.urg":"● Transparency obligations - August 2026 deadline","v3.h":"Marking of AI-generated content","v3.p":"Cryptographic marking of AI-produced content to meet the AI Act transparency obligations.","v3.l":"Request details",
@@ -525,7 +652,7 @@ var I18N={en:{
  "why.eyebrow":"Why Snaproof","why.h2":"Four concrete reasons, not promises.","why.lead":"We bet on what is defensible and verifiable: compliance, offline operation, cost and regulatory positioning.",
  "why.m1n":"Offline","why.m1l":"Works even without a network, where blockchain can not reach","why.m2n":"DB-level","why.m2l":"Cost per verification like a traditional database","why.m3n":"Native","why.m3l":"Designed around EU compliance, not retrofitted","why.m4n":"Neutral","why.m4l":"Enabling infrastructure: we do not issue tokens or certificates",
  "cta.eyebrow":"Let us talk","cta.h2":"Do you have an authenticity, provenance or compliance problem?","cta.p":"Tell us your use case. In a demo we will show you how Snaproof can certify it - compliant, offline and without the complexity of blockchain.","cta.call":"Book a call","cta.email":"Write us an email","cta.mini":"Or write to us at",
- "foot.desc":"Compliance-grade digital certification infrastructure. Verifiable authenticity and provenance, offline, at the cost of a database.","foot.product":"Product","foot.company":"Company","foot.rights":"© 2026 Snaproof S.r.l. - All rights reserved."
+ "nav.prezzi":"Pricing","mod.eyebrow":"How we work","mod.h2":"A B2B SaaS platform, in the model you need.","mod.lead":"Snaproof plugs in as a service, as white-label technology or installed on-premises: pick the level of control and integration that fits your organisation.","mod.saasT":"SaaS","mod.saasH":"Managed service","mod.saasP":"The cloud platform, with subscription plans. Turn on the APIs and certify your processes with no infrastructure to run. For SMEs and developers.","mod.wlT":"White Label · OEM","mod.wlH":"Your product, our engine","mod.wlP":"APIs and SDKs under licence to embed Snaproof certification inside your own product, under your brand. For system integrators and OEMs.","mod.opT":"On-Premises","mod.opH":"Installed in-house","mod.opP":"On-premises deployment with recurring support, for those who need maximum control and data sovereignty. For large enterprises.","mod.price":"Custom pricing","mod.cta":"Custom pricing for your use case.","foot.desc":"Compliance-grade digital certification infrastructure. Verifiable authenticity and provenance, offline, at the cost of a database.","foot.product":"Product","foot.company":"Company","foot.rights":"© 2026 Snaproof S.r.l. - All rights reserved."
 }};
 var CATLABEL={it:{tech:"Tecnologia",sectors:"Settori",context:"Contesto"},en:{tech:"Technology",sectors:"Sectors",context:"Context"}};
 var CATS=["tech","sectors","context"];
@@ -602,8 +729,17 @@ function wrapProof(root){
     node.parentNode.replaceChild(frag,node);
   });
 }
-var proofState=0;
-setInterval(function(){proofState^=1;var base=proofState?'proof':'prova';document.querySelectorAll('.pw').forEach(function(el){var w=base;if(el.dataset.cap==='1')w=w.charAt(0).toUpperCase()+w.slice(1);el.textContent=w;});},1000);
+var GLY='ABCDEFGHKLMNPRSTXZ0123456789<>/#%+=';var proofState=0;
+var reduceP=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function pwFinal(el,target){return el.dataset.cap==='1'?target.charAt(0).toUpperCase()+target.slice(1):target;}
+function proofTick(){proofState^=1;var target=proofState?'proof':'prova';var els=document.querySelectorAll('.pw');if(!els.length)return;
+  if(reduceP){els.forEach(function(el){el.textContent=pwFinal(el,target);});return;}
+  var start=performance.now(),dur=380;
+  function fr(now){var p=Math.min(1,(now-start)/dur);
+    els.forEach(function(el){var t=pwFinal(el,target),len=t.length,lock=Math.floor(p*len+0.001),s='';for(var i=0;i<len;i++){s+=i<lock?t.charAt(i):GLY.charAt((Math.random()*GLY.length)|0);}el.textContent=s;});
+    if(p<1)requestAnimationFrame(fr);else els.forEach(function(el){el.textContent=pwFinal(el,target);});}
+  requestAnimationFrame(fr);}
+setInterval(proofTick,1800);
 
 var curLang='it',pIdx=0,typeTimer=null,autoTimer=null,DUR=10000;
 function typeSub(text){clearTimeout(typeTimer);var el=document.getElementById('heroSub');var i=0;
@@ -628,16 +764,17 @@ function showClaim(idx,instant){var arr=CLAIMS[curLang];cIdx=((idx%arr.length)+a
   [tEl,sEl].forEach(function(e){e.style.opacity='0';e.style.transform='translateY(10px)';});setTimeout(set,420);}
 function scheduleClaim(){clearInterval(claimTimer);claimTimer=setInterval(function(){showClaim(cIdx+1);},9000);}
 
-function makeFeat(rootId,dotsId,DATA,ms){
-  var lang=curLang,idx=0,timer=null;var root=document.getElementById(rootId),dw=document.getElementById(dotsId);
+function makeFeat(rootId,dotsId,DATA,ms,listId){
+  var lang=curLang,idx=0,timer=null;var root=document.getElementById(rootId),dw=document.getElementById(dotsId),lw=listId?document.getElementById(listId):null;
   function dots(){dw.innerHTML='';DATA[lang].forEach(function(_,i){var s=document.createElement('span');if(i===idx)s.className='on';s.onclick=function(){go(i,true);restart();};dw.appendChild(s);});}
+  function list(){if(!lw)return;lw.innerHTML='';DATA[lang].forEach(function(it,i){var b=document.createElement('button');b.className='off-item'+(i===idx?' on':'');b.innerHTML='<span class="oi"><svg viewBox="0 0 24 24">'+(it.i||'')+'</svg></span><span class="oc"><span class="ok">'+it.k+'</span><span class="ot">'+it.h+'</span><span class="op">'+it.p+'</span></span>';b.onclick=function(){go(i,true);restart();};lw.appendChild(b);});wrapProof(lw);}
   function render(instant){var it=DATA[lang][idx];
     function set(){var ic=it.i?'<div class="ficon"><svg viewBox="0 0 24 24">'+it.i+'</svg></div>':'';root.innerHTML=ic+'<span class="fk">'+it.k+'</span><h3>'+it.h+'</h3><p>'+it.p+'</p>';wrapProof(root);root.style.opacity='1';root.style.transform='none';}
-    if(instant){set();}else{root.style.opacity='0';root.style.transform='translateY(12px)';setTimeout(set,380);}dots();}
+    if(instant){set();}else{root.style.opacity='0';root.style.transform='translateY(12px)';setTimeout(set,380);}dots();if(lw)lw.querySelectorAll('.off-item').forEach(function(x,i){x.classList.toggle('on',i===idx);});}
   function go(i,instant){idx=((i%DATA[lang].length)+DATA[lang].length)%DATA[lang].length;render(instant);}
   function restart(){clearInterval(timer);timer=setInterval(function(){go(idx+1);},ms);}
-  go(0,true);restart();
-  return {setLang:function(l){lang=l;go(idx,true);}};
+  list();go(0,true);restart();
+  return {setLang:function(l){lang=l;list();go(idx,true);}};
 }
 
 var SUN='<circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7"/>';
@@ -648,7 +785,7 @@ function applyTheme(t){document.documentElement.setAttribute('data-theme',t);doc
 
 function initGrid(){
   var c=document.getElementById('grid');if(!c)return;var ctx=c.getContext('2d');
-  var gap=30,dpr=1,W=0,H=0;var tx=innerWidth*0.5,ty=innerHeight*0.42,mx=tx,my=ty;
+  var gap=30,dpr=1,W=0,H=0;var tx=innerWidth*0.5,ty=innerHeight*0.42,mx=tx,my=ty;var GG='0123456789<>/#%=+';function gch(x,y,tm,sp){var n=Math.floor(tm*sp)+x*131+y*17;var r=Math.sin(n*12.9898)*43758.5453;r=r-Math.floor(r);return GG.charAt((r*GG.length)|0);}
   var symCol,accCol;function readCols(){symCol=cssvar('--grid-sym');accCol=cssvar('--grid-accent');}readCols();themeHooks.push(readCols);
   function resize(){dpr=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;c.width=W*dpr;c.height=H*dpr;c.style.width=W+'px';c.style.height=H+'px';ctx.setTransform(dpr,0,0,dpr,0,0);ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='10px "JetBrains Mono",monospace';}
   addEventListener('resize',resize);resize();
@@ -662,8 +799,8 @@ function initGrid(){
     for(var y=gap*0.6;y<H;y+=gap){for(var x=gap*0.6;x<W;x+=gap){
       var dx=x-mx,dy=y-my,d=Math.sqrt(dx*dx+dy*dy);var ex=x-gx,ey=y-gy,dg=Math.sqrt(ex*ex+ey*ey);
       var sym='·',a=0.03,col=symCol;
-      if(d<50){sym='●';a=0.8;col=accCol;}else if(d<96){sym='o';a=0.4;col=accCol;}else if(d<150){sym='+';a=0.14;col=symCol;}
-      else if(dg<110){sym='o';a=0.14;col=accCol;}else if(dg<180){sym='+';a=0.07;col=symCol;}
+      if(d<50){sym=gch(x,y,time,9);a=0.85;col=accCol;}else if(d<96){sym=gch(x,y,time,6);a=0.45;col=accCol;}else if(d<150){sym=gch(x,y,time,3);a=0.16;col=symCol;}
+      else if(dg<110){sym=gch(x,y,time,4);a=0.16;col=accCol;}else if(dg<180){sym=gch(x,y,time,2);a=0.08;col=symCol;}
       a*=0.72+0.28*Math.sin(time*1.3+(x+y)*0.028);if(a<0.018)continue;
       ctx.globalAlpha=a;ctx.fillStyle=col;ctx.fillText(sym,x,y);
     }}
@@ -676,7 +813,7 @@ var sculpt={enabled:false};
 function rrect(x,px,py,w,hh,r){x.beginPath();x.moveTo(px+r,py);x.arcTo(px+w,py,px+w,py+hh,r);x.arcTo(px+w,py+hh,px,py+hh,r);x.arcTo(px,py+hh,px,py,r);x.arcTo(px,py,px+w,py,r);x.closePath();}
 function hex(n){var s='0x',ch='0123456789ABCDEF';for(var i=0;i<n;i++)s+=ch[Math.floor(Math.random()*16)];return s;}
 function makeCertTexture(d){
-  var W=520,H=340,c=document.createElement('canvas');c.width=W;c.height=H;var x=c.getContext('2d');
+  var W=520,H=340,S=1.5,c=document.createElement('canvas');c.width=W*S;c.height=H*S;var x=c.getContext('2d');x.scale(S,S);
   x.clearRect(0,0,W,H);
   rrect(x,8,8,W-16,H-16,26);x.fillStyle='rgba(130,120,230,0.08)';x.fill();x.lineWidth=2;x.strokeStyle='rgba(150,140,255,0.42)';x.stroke();
   var acc=d.acc;
@@ -692,25 +829,33 @@ function makeCertTexture(d){
   x.fillStyle='rgba(205,201,235,0.78)';x.font='500 17px "JetBrains Mono",monospace';x.fillText(d.h1,40,168);x.fillText(d.h2,40,196);
   x.fillStyle='rgba(158,153,196,0.7)';x.font='500 14px "JetBrains Mono",monospace';x.fillText('ts   '+d.ts,40,236);x.fillText('alg  SecureEnclave · append-only',40,262);
   x.fillStyle=acc;x.font='700 13px "JetBrains Mono",monospace';x.fillText('OTPr',W-82,H-28);
-  var t=new THREE.CanvasTexture(c);t.anisotropy=4;t.needsUpdate=true;return t;
+  if(d.g){x.save();x.translate(W-66,54);x.strokeStyle=acc;x.fillStyle=acc;x.lineWidth=2;x.lineCap='round';x.lineJoin='round';
+    if(d.g==='euro'){x.font='700 30px "JetBrains Mono",monospace';x.textAlign='center';x.textBaseline='middle';x.fillText('€',0,1);x.textAlign='left';}
+    else if(d.g==='tag'){x.beginPath();x.moveTo(-12,-1);x.lineTo(1,-14);x.lineTo(14,-1);x.lineTo(1,12);x.closePath();x.stroke();x.beginPath();x.arc(1,-6,2.2,0,6.3);x.stroke();}
+    else if(d.g==='box'){x.beginPath();x.moveTo(0,-14);x.lineTo(12,-7);x.lineTo(12,7);x.lineTo(0,14);x.lineTo(-12,7);x.lineTo(-12,-7);x.closePath();x.stroke();x.beginPath();x.moveTo(0,-14);x.lineTo(0,0);x.moveTo(0,0);x.lineTo(12,-7);x.moveTo(0,0);x.lineTo(-12,-7);x.stroke();}
+    else if(d.g==='chain'){x.beginPath();x.rect(-14,-6,15,12);x.stroke();x.beginPath();x.rect(-1,-6,15,12);x.stroke();}
+    else if(d.g==='ai'){x.beginPath();x.moveTo(0,-13);x.lineTo(3,-3);x.lineTo(13,0);x.lineTo(3,3);x.lineTo(0,13);x.lineTo(-3,3);x.lineTo(-13,0);x.lineTo(-3,-3);x.closePath();x.stroke();}
+    else if(d.g==='check'){x.beginPath();x.arc(0,0,12,0,6.3);x.stroke();x.beginPath();x.moveTo(-6,0);x.lineTo(-1,5);x.lineTo(7,-6);x.stroke();}
+    x.restore();}
+  var t=new THREE.CanvasTexture(c);t.anisotropy=4;t.needsUpdate=true;if(THREE.sRGBEncoding)t.encoding=THREE.sRGBEncoding;return t;
 }
 function initSculpture(){
   var canvas=document.getElementById('webgl');if(!canvas||typeof THREE==='undefined')return;
-  var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
-  renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));
+  var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true,premultipliedAlpha:false});
+  renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));renderer.setClearColor(0x000000,0);if(THREE.sRGBEncoding)renderer.outputEncoding=THREE.sRGBEncoding;
   var scene=new THREE.Scene();
   var halfH=8, camera=new THREE.OrthographicCamera(-10,10,halfH,-halfH,-50,50);camera.position.set(0,0,10);
-  var LABELS=[['DPP · MADE IN ITALY','#8E7BFF'],['AI ACT · ART. 50','#33D6C8'],['DIGITAL EURO','#8E7BFF'],['SECURE ENCLAVE','#33D6C8'],['APPEND-ONLY','#8E7BFF'],['SUPPLY CHAIN','#33D6C8'],['SIGNATURE','#8E7BFF'],['COMPLIANCE','#33D6C8']];
-  var N=LABELS.length, cardW=6.6, cardH=4.3;
+  var LABELS=[['DPP · MADE IN ITALY','#8E7BFF','tag'],['AI ACT · ART. 50','#33D6C8','ai'],['DIGITAL EURO','#8E7BFF','euro'],['SECURE ENCLAVE','#33D6C8',''],['APPEND-ONLY','#8E7BFF','chain'],['SUPPLY CHAIN','#33D6C8','box'],['SIGNATURE','#8E7BFF',''],['COMPLIANCE','#33D6C8','check']];
+  var N=LABELS.length, cardW=7.9, cardH=5.2;
   var geo=new THREE.PlaneGeometry(cardW,cardH);
   var cards=[];
   for(var i=0;i<N;i++){
-    var d={label:LABELS[i][0],acc:LABELS[i][1],h1:hex(22),h2:hex(22),ts:'2026-0'+(1+i%9)+'-'+(10+i)};
-    var m=new THREE.MeshBasicMaterial({map:makeCertTexture(d),transparent:true,opacity:0.92,depthWrite:false,depthTest:false});
+    var d={label:LABELS[i][0],acc:LABELS[i][1],g:LABELS[i][2]||'',h1:hex(22),h2:hex(22),ts:'2026-0'+(1+i%9)+'-'+(10+i)};
+    var m=new THREE.MeshBasicMaterial({map:makeCertTexture(d),transparent:true,opacity:0.64,depthWrite:false,depthTest:false});
     var mesh=new THREE.Mesh(geo,m);mesh.renderOrder=i;cards.push(mesh);scene.add(mesh);
   }
-  var FULLW=44;
-  function computeFrustum(){var aspect=innerWidth/innerHeight;var hw=halfH*aspect;camera.left=-hw;camera.right=hw;camera.top=halfH;camera.bottom=-halfH;camera.updateProjectionMatrix();FULLW=(hw+cardW)*2;}
+  var FULLW=44,HW=16;
+  function computeFrustum(){var aspect=innerWidth/innerHeight;var hw=halfH*aspect;camera.left=-hw;camera.right=hw;camera.top=halfH;camera.bottom=-halfH;camera.updateProjectionMatrix();FULLW=(hw+cardW)*2;HW=hw;}
   function resize(){renderer.setSize(innerWidth,innerHeight,false);computeFrustum();}
   addEventListener('resize',resize);resize();
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -718,16 +863,19 @@ function initSculpture(){
   addEventListener('mousemove',function(e){tgx=(e.clientX/innerWidth-.5);tgy=(e.clientY/innerHeight-.5);},{passive:true});
   var clock=new THREE.Clock(),running=false;
   function place(time){
+    var cwx=mx*2*HW;
     for(var i=0;i<N;i++){
-      var t=((i/N)+time*0.02)%1;
-      cards[i].position.set((t-0.5)*FULLW, Math.sin(t*Math.PI*2+i)*1.1+my*1.4, (i%3-1)*0.25);
-      cards[i].rotation.set(0.05*Math.sin(t*Math.PI*2+i), 0.20*Math.sin(t*Math.PI*2)+mx*0.5, 0.04*Math.sin(t*Math.PI*3+i));
+      var t=((i/N)+time*0.02)%1;var x=(t-0.5)*FULLW;
+      var f=Math.max(0,1-Math.abs(x-cwx)/(cardW*1.8));f=f*f;
+      cards[i].position.set(x, Math.sin(t*Math.PI*2+i)*1.1, (i%3-1)*0.3 + f*0.9);
+      cards[i].rotation.set(0.05*Math.sin(t*Math.PI*2+i), 0.20*Math.sin(t*Math.PI*2), 0.04*Math.sin(t*Math.PI*3+i));
+      cards[i].material.opacity=0.42+0.58*f;
     }
   }
   function loop(){
     if(!sculpt.enabled){running=false;return;}
     var time=reduce?0:clock.getElapsedTime();
-    mx+=(tgx-mx)*0.05;my+=(tgy-my)*0.05;
+    mx+=(tgx-mx)*0.08;my+=(tgy-my)*0.08;
     place(time);renderer.render(scene,camera);
     if(!reduce&&sculpt.enabled)requestAnimationFrame(loop);else running=false;
   }
@@ -735,12 +883,38 @@ function initSculpture(){
   if(sculpt.enabled){running=true;if(reduce){place(0);renderer.render(scene,camera);}else loop();}
 }
 
-document.addEventListener('DOMContentLoaded',function(){
+var MORE={it:"Approfondisci",en:"Learn more"},REFS={it:"Fonti · normativa UE",en:"Sources · EU regulation"};
+var VERTS={it:[
+ {icon:'<path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/>',tag:"Supply chain · DPP",title:"Digital Product Passport per il Made in Italy",urg:"ESPR · atto delegato tessile atteso nel 2027, obbligo ~2028",desc:"Diamo a PMI e filiere del lusso un modo economico e a norma per certificare origine e autenticità dei prodotti.",long:"Il Digital Product Passport diventerà obbligatorio per il tessile con l'atto delegato ESPR, la cui adozione è indicata dalla Commissione UE nel 2027; l'obbligo effettivo arriverà almeno 18 mesi dopo, realisticamente dal 2028. Snaproof permette a PMI e fornitori delle filiere del lusso di generare un DPP verificabile, offline e al costo di un database, in linea con gli standard GS1.",links:[{t:"Commissione UE — Ecodesign / ESPR",u:"https://green-forum.ec.europa.eu/implementing-ecodesign-sustainable-products-regulation_en"},{t:"GS1 — Digital Product Passport",u:"https://www.gs1.org/standards/standards-emerging-regulations/DPP"}]},
+ {icon:'<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/><path d="M7 15h4"/>',tag:"Pagamenti programmabili",title:"Condizionalità e verifica per l'euro digitale offline",urg:"Euro digitale · fase successiva dalla BCE (ott 2025), possibile emissione 2029",desc:"Un livello di verifica e condizioni sopra i binari di regolamento, progettato per operare offline in struttura closed-loop.",long:"Nell'ottobre 2025 la BCE ha deciso di passare alla fase successiva del progetto euro digitale, con una possibile prima emissione nel 2029 e un pilota già dalla metà del 2027. Snaproof si posiziona come layer di conditionality e verifica sopra i binari di regolamento, operando offline e in una struttura closed-loop.",links:[{t:"BCE — Euro digitale",u:"https://www.ecb.europa.eu/euro/digital_euro/html/index.en.html"}]},
+ {icon:'<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18"/><circle cx="12" cy="12" r="3"/>',tag:"AI Act · Articolo 50",title:"Marcatura dei contenuti generati dall'IA",urg:"In vigore dal 2 agosto 2026 · marcatura art. 50.2 entro il 2 dic 2026",desc:"Marcatura crittografica dei contenuti prodotti dall'IA per rispondere agli obblighi di trasparenza dell'AI Act.",long:"L'Articolo 50 dell'AI Act si applica dal 2 agosto 2026: i contenuti generati dall'IA devono essere marcati in formato leggibile dalla macchina e riconoscibili come artificiali. Per i sistemi già sul mercato l'obbligo di marcatura dell'art. 50(2) scatta entro il 2 dicembre 2026. Snaproof fornisce la marcatura crittografica, in linea con il codice di condotta UE.",links:[{t:"AI Act — Articolo 50",u:"https://artificialintelligenceact.eu/article/50/"},{t:"Commissione UE — Codice di condotta",u:"https://digital-strategy.ec.europa.eu/en/policies/code-practice-ai-generated-content"},{t:"C2PA — Content Credentials",u:"https://c2pa.org/"}]},
+ {icon:'<path d="M4 21h16M6 21V9l6-4 6 4v12M10 21v-6h4v6"/>',tag:"Istituzioni & standard",title:"Un layer neutrale per enti e consorzi",urg:"Enabler d'infrastruttura, non emittente",desc:"Abilitiamo istituzioni, associazioni ed enti di standard: restano loro titolari di emissione e regole.",long:"Snaproof non emette token né certificati: fornisce l'infrastruttura crittografica su cui istituzioni, associazioni di categoria ed enti di standard costruiscono i propri programmi di certificazione, mantenendo il pieno controllo di emissione e regole. Ci integriamo con standard aperti come GS1.",links:[{t:"GS1 in Europe — DPP",u:"https://gs1.eu/activities/digital-product-passport/"},{t:"C2PA — Content provenance",u:"https://c2pa.org/"}]}
+],en:[
+ {icon:'<path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/>',tag:"Supply chain · DPP",title:"Digital Product Passport for Made in Italy",urg:"ESPR · textile delegated act expected in 2027, obligation ~2028",desc:"We give SMEs and luxury supply chains a cheap, compliant way to certify product origin and authenticity.",long:"The Digital Product Passport will become mandatory for textiles with the ESPR delegated act, whose adoption the European Commission indicates for 2027; the actual obligation will follow at least 18 months later, realistically from 2028. Snaproof lets SMEs and luxury-chain suppliers generate a verifiable DPP, offline and at the cost of a database, aligned with GS1 standards.",links:[{t:"European Commission — Ecodesign / ESPR",u:"https://green-forum.ec.europa.eu/implementing-ecodesign-sustainable-products-regulation_en"},{t:"GS1 — Digital Product Passport",u:"https://www.gs1.org/standards/standards-emerging-regulations/DPP"}]},
+ {icon:'<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/><path d="M7 15h4"/>',tag:"Programmable payments",title:"Conditionality and verification for the offline digital euro",urg:"Digital euro · next phase from the ECB (Oct 2025), possible issuance 2029",desc:"A verification and conditions layer above settlement rails, designed to operate offline in a closed-loop structure.",long:"In October 2025 the ECB decided to move to the next phase of the digital euro project, with a possible first issuance in 2029 and a pilot as early as mid-2027. Snaproof positions itself as a conditionality and verification layer above settlement rails, operating offline and in a closed-loop structure.",links:[{t:"ECB — Digital euro",u:"https://www.ecb.europa.eu/euro/digital_euro/html/index.en.html"}]},
+ {icon:'<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18"/><circle cx="12" cy="12" r="3"/>',tag:"AI Act · Article 50",title:"Marking of AI-generated content",urg:"In force from 2 August 2026 · art. 50.2 marking by 2 Dec 2026",desc:"Cryptographic marking of AI-produced content to meet the AI Act transparency obligations.",long:"Article 50 of the AI Act applies from 2 August 2026: AI-generated content must be marked in a machine-readable format and detectable as artificial. For systems already on the market, the art. 50(2) marking obligation kicks in by 2 December 2026. Snaproof provides the cryptographic marking, aligned with the EU code of practice.",links:[{t:"AI Act — Article 50",u:"https://artificialintelligenceact.eu/article/50/"},{t:"European Commission — Code of practice",u:"https://digital-strategy.ec.europa.eu/en/policies/code-practice-ai-generated-content"},{t:"C2PA — Content Credentials",u:"https://c2pa.org/"}]},
+ {icon:'<path d="M4 21h16M6 21V9l6-4 6 4v12M10 21v-6h4v6"/>',tag:"Institutions & standards",title:"A neutral layer for institutions and consortia",urg:"Infrastructure enabler, not issuer",desc:"We enable institutions, associations and standards bodies: they remain the owners of issuance and rules.",long:"Snaproof does not issue tokens or certificates: it provides the cryptographic infrastructure on which institutions, industry associations and standards bodies build their own certification programmes, keeping full control of issuance and rules. We integrate with open standards such as GS1.",links:[{t:"GS1 in Europe — DPP",u:"https://gs1.eu/activities/digital-product-passport/"},{t:"C2PA — Content provenance",u:"https://c2pa.org/"}]}
+]};
+var vIdx=0,vTimer=null,vLang="it";
+function vArr(){return VERTS[vLang];}
+function renderVMain(instant){var v=vArr()[vIdx],el=document.getElementById("vMain");if(!el)return;
+  function set(){el.innerHTML='<div class="vspot-ic"><svg viewBox="0 0 24 24" fill="none">'+v.icon+'</svg></div><div><span class="vtag">'+v.tag+'</span><h3>'+v.title+'</h3><div class="vspot-urg">● '+v.urg+'</div><p>'+v.desc+'</p><span class="vspot-more">'+MORE[vLang]+' <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>';wrapProof(el);el.style.opacity="1";el.style.transform="none";}
+  if(instant){set();}else{el.style.opacity="0";el.style.transform="translateY(10px)";setTimeout(set,320);}
+  document.querySelectorAll("#vTabs .vtab").forEach(function(t,i){t.classList.toggle("on",i===vIdx);});}
+function buildTabs(){var w=document.getElementById("vTabs");if(!w)return;w.innerHTML="";vArr().forEach(function(v,i){var b=document.createElement("button");b.className="vtab"+(i===vIdx?" on":"");b.innerHTML='<span class="ti"><svg viewBox="0 0 24 24" fill="none">'+v.icon+'</svg></span><span class="tt">'+v.tag+'</span>';b.onclick=function(){vIdx=i;renderVMain();scheduleV();};w.appendChild(b);});}
+function goV(i){vIdx=((i%vArr().length)+vArr().length)%vArr().length;renderVMain();}
+function scheduleV(){clearInterval(vTimer);vTimer=setInterval(function(){goV(vIdx+1);},6000);}
+function openVModal(i){var v=vArr()[i],b=document.getElementById("vModalBody");if(!b)return;
+  var links=v.links.map(function(l){return '<a href="'+l.u+'" target="_blank" rel="noopener">'+l.t+' <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>';}).join("");
+  b.innerHTML='<div class="mic"><svg viewBox="0 0 24 24" fill="none">'+v.icon+'</svg></div><span class="vtag">'+v.tag+'</span><h3>'+v.title+'</h3><div class="vspot-urg">● '+v.urg+'</div><p>'+v.long+'</p><div class="modal-refs">'+REFS[vLang]+'</div><div class="modal-links">'+links+'</div>';
+  wrapProof(b);document.getElementById("vModal").classList.add("open");document.body.style.overflow="hidden";}
+function closeVModal(){var m=document.getElementById("vModal");if(m)m.classList.remove("open");document.body.style.overflow="";}
+document.addEventListener("DOMContentLoaded",function(){
   capIT();
   var lang=document.documentElement.getAttribute('lang')||'it';curLang=lang;
   var theme=document.documentElement.getAttribute('data-theme')||'dark';
-  try{if(localStorage.getItem('sp-3d')==='1')sculpt.enabled=true;}catch(e){}
-  initGrid();initSculpture();
+  var isMobile=innerWidth<760||('ontouchstart' in window&&innerWidth<900);
+  initGrid();if(!isMobile)initSculpture();
   applyLang(lang);applyTheme(theme);
   document.documentElement.classList.add('ready');
 
@@ -757,17 +931,26 @@ document.addEventListener('DOMContentLoaded',function(){
   CLAIMS[curLang].forEach(function(_,i){var s=document.createElement('span');s.onclick=function(){showClaim(i);scheduleClaim();};cd.appendChild(s);});
   showClaim(0,true);scheduleClaim();
 
-  var offC=makeFeat('offFeat','offDots',OFF,5000);
+  var offC=makeFeat('offFeat','offDots',OFF,5000,'offList');
   wrapProof(document.body);
+  vLang=curLang;buildTabs();renderVMain(true);scheduleV();
+  document.getElementById('vMain').onclick=function(){openVModal(vIdx);};
+  document.getElementById('vModal').querySelectorAll('[data-close]').forEach(function(el){el.onclick=closeVModal;});
+  addEventListener('keydown',function(e){if(e.key==='Escape')closeVModal();});
+  var toTop=document.getElementById('toTop');
+  function tScroll(){toTop.classList.toggle('show',window.scrollY>innerHeight*0.6);}tScroll();addEventListener('scroll',tScroll,{passive:true});
+  toTop.onclick=function(){var sy=window.scrollY,st=performance.now();(function fr(n){var p=Math.min(1,(n-st)/700);var e=1-Math.pow(1-p,3);window.scrollTo(0,sy*(1-e));if(p<1)requestAnimationFrame(fr);})(performance.now());};
 
   document.getElementById('lang').onclick=function(){lang=(lang==='en')?'it':'en';curLang=lang;applyLang(lang);
     document.querySelectorAll('#hcCats .hc-cat').forEach(function(x){x.textContent=CATLABEL[curLang][x.dataset.cat];});
-    showPhrase(pIdx,true);schedule();showClaim(cIdx,true);offC.setLang(curLang);};
+    showPhrase(pIdx,true);schedule();showClaim(cIdx,true);offC.setLang(curLang);vLang=curLang;buildTabs();renderVMain(true);scheduleV();document.getElementById('vMain').onclick=function(){openVModal(vIdx);};};
   document.getElementById('theme').onclick=function(){theme=(theme==='dark')?'light':'dark';applyTheme(theme);if(typeof updNav==='function')updNav();};
-  var d3=document.getElementById('d3');
-  function paint3d(){d3.classList.toggle('dim',!sculpt.enabled);document.getElementById('webgl').classList.toggle('off',!sculpt.enabled);}
-  paint3d();
-  d3.onclick=function(){sculpt.enabled=!sculpt.enabled;try{localStorage.setItem('sp-3d',sculpt.enabled?'1':'0');}catch(e){}paint3d();if(sculpt.enabled&&sculpt.start)sculpt.start();};
+  var d3=document.getElementById('d3');var d3timer=null;
+  function paint3d(){d3.classList.toggle('dim',!sculpt.enabled);d3.classList.toggle('blink',sculpt.enabled);document.getElementById('webgl').classList.toggle('off',!sculpt.enabled);}
+  function start3d(){sculpt.enabled=true;clearTimeout(d3timer);d3timer=setTimeout(function(){sculpt.enabled=false;paint3d();},30000);paint3d();if(sculpt.start)sculpt.start();}
+  function stop3d(){sculpt.enabled=false;clearTimeout(d3timer);paint3d();}
+  if(isMobile){d3.style.display='none';sculpt.enabled=false;paint3d();}else{start3d();}
+  d3.onclick=function(){if(isMobile)return;sculpt.enabled?stop3d():start3d();};
 
   var nav=document.getElementById('nav');
   function onScroll(){nav.classList.toggle('scrolled',window.scrollY>50);}onScroll();addEventListener('scroll',onScroll,{passive:true});
@@ -790,13 +973,13 @@ document.addEventListener('DOMContentLoaded',function(){
     function curIndex(){var y=window.scrollY+2,idx=0;for(var i=0;i<chapters.length;i++){if(absY(chapters[i])<=y)idx=i;else break;}return idx;}
     function doFlash(a,b){if(!flash)return;var fa=chapters[a].classList.contains('flip'),fb=chapters[b].classList.contains('flip');if(fa!==fb){flash.classList.remove('go');void flash.offsetWidth;flash.classList.add('go');}}
     function down(){var i=curIndex();var r=chapters[i].getBoundingClientRect();
-      if(r.bottom-innerHeight>12){tween(window.scrollY+Math.min(r.bottom-innerHeight,innerHeight*0.85),620);}
+      if(r.bottom-innerHeight>innerHeight*0.3){tween(window.scrollY+Math.min(r.bottom-innerHeight,innerHeight*0.85),620);}
       else{var n=Math.min(chapters.length-1,i+1);if(n!==i){doFlash(i,n);tween(absY(chapters[n]),850);}}}
     function up(){var i=curIndex();var r=chapters[i].getBoundingClientRect();
-      if(r.top<-12){tween(window.scrollY-Math.min(-r.top,innerHeight*0.85),620);}
+      if(r.top<-innerHeight*0.3){tween(window.scrollY-Math.min(-r.top,innerHeight*0.85),620);}
       else{var p=Math.max(0,i-1);if(p!==i){doFlash(i,p);tween(absY(chapters[p]),850);}}}
-    addEventListener('wheel',function(e){e.preventDefault();if(anim||performance.now()-lastEnd<150)return;if(Math.abs(e.deltaY)<6)return;e.deltaY>0?down():up();},{passive:false});
-    addEventListener('keydown',function(e){var k=e.key;var nav=['ArrowDown','ArrowUp','ArrowLeft','ArrowRight','PageDown','PageUp','Home','End',' '];if(nav.indexOf(k)<0)return;if(e.target&&/INPUT|TEXTAREA/.test(e.target.nodeName))return;e.preventDefault();if(anim)return;
+    addEventListener('wheel',function(e){var mo=document.getElementById('vModal');if(mo&&mo.classList.contains('open'))return;e.preventDefault();if(anim||performance.now()-lastEnd<150)return;if(Math.abs(e.deltaY)<6)return;e.deltaY>0?down():up();},{passive:false});
+    addEventListener('keydown',function(e){var mo=document.getElementById('vModal');if(mo&&mo.classList.contains('open'))return;var k=e.key;var nav=['ArrowDown','ArrowUp','ArrowLeft','ArrowRight','PageDown','PageUp','Home','End',' '];if(nav.indexOf(k)<0)return;if(e.target&&/INPUT|TEXTAREA/.test(e.target.nodeName))return;e.preventDefault();if(anim)return;
       if(k==='ArrowDown'||k==='ArrowRight'||k==='PageDown'||k===' ')down();
       else if(k==='ArrowUp'||k==='ArrowLeft'||k==='PageUp')up();
       else if(k==='Home'){doFlash(curIndex(),0);tween(0,850);}
@@ -805,6 +988,6 @@ document.addEventListener('DOMContentLoaded',function(){
   })();
 });
 </script>
-<script src="https://williechat.com/widget.js" data-website-id="7d38d300-6b02-456b-8f43-6d6f8e78e74d"></script>
+<script>setTimeout(function(){var s=document.createElement("script");s.src="https://williechat.com/widget.js";s.setAttribute("data-website-id","7d38d300-6b02-456b-8f43-6d6f8e78e74d");document.body.appendChild(s);},30000);</script>
 </body>
 </html>
